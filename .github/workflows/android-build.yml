@@ -1,14 +1,15 @@
-name: Build Android APK
+name: Build Android APK (Fast Local)
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
-  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 45
 
     steps:
       - name: 📦 Checkout Repository
@@ -21,22 +22,22 @@ jobs:
 
       - name: 🧰 Install Dependencies
         run: |
-          npm install -g expo-cli eas-cli
-          npm install
+          npm ci
 
       - name: 🔐 Authenticate with Expo
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
         run: |
-          eas whoami || echo "Expo authentication successful"
+          npx eas whoami || echo "Expo authenticated"
 
-      - name: 🔧 Prebuild Native Project
-        run: npx expo prebuild --clean --platform android
+      - name: 🔧 Prebuild Android Project
+        run: npx expo prebuild --platform android
 
-      - name: 🚀 Build Android APK
+      - name: 🚀 Build APK Locally
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
-        run: npx eas build -p android --profile preview --local --output ./app-release.apk
+        run: |
+          npx eas build --platform android --profile preview --local --non-interactive --output app-release.apk
 
       - name: 📤 Upload APK Artifact
         uses: actions/upload-artifact@v4
