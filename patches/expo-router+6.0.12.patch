@@ -1,0 +1,10 @@
+diff --git a/node_modules/expo-router/build/views/LinkPreviewContext.js b/node_modules/expo-router/build/views/LinkPreviewContext.js
+new file mode 100644
+index 0000000..5cf9bb4
+--- /dev/null
++++ b/node_modules/expo-router/build/views/LinkPreviewContext.js
+@@ -0,0 +1,4 @@
++import React from "react";
++export const LinkPreviewContext = React.createContext(null);
++export const LinkPreviewContextProvider = ({ children }) => <>{children}</>;
++export const useLinkPreviewContext = () => React.useContext(LinkPreviewContext);

@@ -1,0 +1,26 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // --- Users collection ---
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // --- Transactions collection ---
+    match /transactions/{docId} {
+      allow read: if request.auth != null && request.auth.uid == resource.data.userId;
+      allow write: if request.auth != null && request.auth.uid == request.resource.data.userId;
+    }
+
+    // --- Public Profiles collection ---
+    match /publicProfiles/{userId} {
+      // Any logged-in user can read public profiles
+      allow read: if request.auth != null;
+
+      // Users can write their own profile
+      allow write: if request.auth != null && request.auth.uid == userId;
+    }
+  }
+}

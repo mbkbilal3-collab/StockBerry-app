@@ -1,0 +1,39 @@
+{
+  "javascript.validate.enable": false,
+  "typescript.validate.enable": false,
+
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+
+  "files.eol": "\n",
+  "files.insertFinalNewline": true,
+
+  "react-native-tools": {
+    "projectRoot": "\"
+  },
+
+  "metro.requireCycle": "warn",
+
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/android": true,
+    "**/ios": true,
+    "**/build": true
+  },
+
+  "files.watcherExclude": {
+    "**/node_modules/**": true,
+    "**/android/**": true,
+    "**/ios/**": true,
+    "**/build/**": true
+  }
+}

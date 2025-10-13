@@ -1,0 +1,28 @@
+import React from 'react';
+import { Stack } from 'expo-router';
+import { Platform, View } from 'react-native';
+
+// Only use provider injection in build/native environment
+const useProvider = (() => {
+  if (Platform.OS === 'android' || Platform.OS === 'ios') {
+    try {
+      // Try multiple possible paths
+      const mod = require('expo-router');
+      if (mod && mod.LinkPreviewProvider) {
+        return mod.LinkPreviewProvider;
+      }
+    } catch (e) {}
+    // fallback to pass-through
+  }
+  // fallback provider
+  return ({ children }: any) => <>{children}</>;
+})();
+
+export default function Layout() {
+  const Provider = useProvider;
+  return (
+    <Provider>
+      <Stack screenOptions={{ headerShown: false }} />
+    </Provider>
+  );
+}

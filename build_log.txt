@@ -1,0 +1,9 @@
+Resolved "preview" environment for the build. Learn more: https://docs.expo.dev/eas/environment-variables/#setting-the-environment-for-your-builds
+No environment variables with visibility "Plain text" and "Sensitive" found for the "preview" environment on EAS.
+Environment variables loaded from the "preview" build profile "env" configuration: EXPO_NO_LINK_PREVIEW, EAS_SKIP_AUTO_FINGERPRINT.
+
+✔ Using remote Android credentials (Expo server)
+
+Compressing project files and uploading to EAS Build. Learn more: https://expo.fyi/eas-build-archive
+Skipping project fingerprint
+This account has used its Android builds from the Free plan this month, which will reset in 18 days (on Sat Nov 01 2025). Upgrade your plan for more builds with shorter wait times and longer timeouts, and to run more builds concurrently with a subscription plan. https://expo.dev/accounts/stockberry/settings/billing

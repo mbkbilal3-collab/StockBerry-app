@@ -1,0 +1,37 @@
+{
+  "expo": {
+    "name": "Stockberry App",
+    "slug": "stockberry",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "android": {
+      "package": "com.stockberry.app",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icon.png",
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+    "updates": {
+      "url": "https://u.expo.dev/c2e03494-6ddc-411d-bc9e-1525bda32c1d"
+    },
+    "runtimeVersion": {
+      "policy": "sdkVersion"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "c2e03494-6ddc-411d-bc9e-1525bda32c1d"
+      }
+    },
+    "owner": "stockberry"
+  }
+}
