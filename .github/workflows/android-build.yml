@@ -1,0 +1,39 @@
+name: Build Android APK
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📦 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: ⚙️ Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: 🧰 Install Dependencies
+        run: |
+          npm install -g expo-cli eas-cli
+          npm install
+
+      - name: 🔧 Prebuild Native Project
+        run: npx expo prebuild --clean --platform android
+
+      - name: 🚀 Build Android APK
+        env:
+          EAS_NO_VCS: 1
+          EAS_BUILD_AUTOCOMMIT: 1
+        run: npx eas build -p android --profile preview --local --output ./app-release.apk
+
+      - name: 📤 Upload APK Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: StockBerry-APK
+          path: app-release.apk
