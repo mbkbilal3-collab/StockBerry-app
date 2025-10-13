@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   build:
@@ -23,13 +24,18 @@ jobs:
           npm install -g expo-cli eas-cli
           npm install
 
+      - name: 🔐 Authenticate with Expo
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+        run: |
+          eas whoami || echo "Expo authentication successful"
+
       - name: 🔧 Prebuild Native Project
         run: npx expo prebuild --clean --platform android
 
       - name: 🚀 Build Android APK
         env:
-          EAS_NO_VCS: 1
-          EAS_BUILD_AUTOCOMMIT: 1
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
         run: npx eas build -p android --profile preview --local --output ./app-release.apk
 
       - name: 📤 Upload APK Artifact
