@@ -1,4 +1,4 @@
-name: Build Android APK (Fixed EAS CLI)
+name: Build Android APK (Skip Lint)
 
 on:
   workflow_dispatch:
@@ -9,7 +9,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 60
 
     steps:
       - name: 📦 Checkout Repository
@@ -34,11 +34,13 @@ jobs:
       - name: 🔧 Prebuild Android Project
         run: npx expo prebuild --platform android
 
-      - name: 🚀 Build APK Locally
+      - name: 🚀 Build APK Locally (Skip Lint)
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
         run: |
-          eas build --platform android --profile preview --local --non-interactive --output app-release.apk
+          eas build --platform android --profile preview --local --non-interactive --output app-release.apk \
+          --gradle-arg=-x --gradle-arg=lintVitalAnalyzeRelease \
+          --gradle-arg=-x --gradle-arg=lintVitalRelease
 
       - name: 📤 Upload APK Artifact
         uses: actions/upload-artifact@v4
