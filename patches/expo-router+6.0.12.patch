@@ -37,33 +37,22 @@ index 7d1728e..fadc0d5 100644
 +exports.LinkPreviewContextProvider = ({ children }) => children;
 diff --git a/node_modules/expo-router/build/link/preview/LinkPreviewContext.js.bak b/node_modules/expo-router/build/link/preview/LinkPreviewContext.js.bak
 new file mode 100644
-index 0000000..7d1728e
+index 0000000..fadc0d5
 --- /dev/null
 +++ b/node_modules/expo-router/build/link/preview/LinkPreviewContext.js.bak
-@@ -0,0 +1,22 @@
+@@ -0,0 +1,12 @@
 +"use strict";
 +Object.defineProperty(exports, "__esModule", { value: true });
-+exports.useLinkPreviewContext = void 0;
-+exports.LinkPreviewContextProvider = LinkPreviewContextProvider;
-+const react_1 = require("react");
-+const LinkPreviewContext = (0, react_1.createContext)(undefined);
-+function LinkPreviewContextProvider({ children }) {
-+    const [openPreviewKey, setOpenPreviewKey] = (0, react_1.useState)(undefined);
-+    const isStackAnimationDisabled = openPreviewKey !== undefined;
-+    return (<LinkPreviewContext.Provider value={{ isStackAnimationDisabled, openPreviewKey, setOpenPreviewKey }}>
-+      {children}
-+    </LinkPreviewContext.Provider>);
-+}
-+const useLinkPreviewContext = () => {
-+    const context = (0, react_1.use)(LinkPreviewContext);
-+    if (context == null) {
-+        throw new Error('useLinkPreviewContext must be used within a LinkPreviewContextProvider. This is likely a bug in Expo Router.');
-+    }
-+    return context;
++exports.LinkPreviewContextProvider = void 0;
++exports.useLinkPreviewContext = () => {
++  // ⛑️ SAFE PATCH: Return a dummy context instead of throwing
++  return {
++    isStackAnimationDisabled: false,
++    openPreviewKey: undefined,
++    setOpenPreviewKey: () => {},
++  };
 +};
-+exports.useLinkPreviewContext = useLinkPreviewContext;
-+//# sourceMappingURL=LinkPreviewContext.js.map
-\ No newline at end of file
++exports.LinkPreviewContextProvider = ({ children }) => children;
 diff --git a/node_modules/expo-router/build/views/LinkPreviewContext.js b/node_modules/expo-router/build/views/LinkPreviewContext.js
 new file mode 100644
 index 0000000..5cf9bb4
