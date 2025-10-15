@@ -1,0 +1,31 @@
+diff --git a/node_modules/expo-router/build/link/useLinkHooks.js b/node_modules/expo-router/build/link/useLinkHooks.js
+index 1111111..2222222 100644
+--- a/node_modules/expo-router/build/link/useLinkHooks.js
++++ b/node_modules/expo-router/build/link/useLinkHooks.js
+@@ -1,7 +1,12 @@
+ "use strict";
+ Object.defineProperty(exports, "__esModule", { value: true });
+ exports.useLinkToPathProps = exports.useLinkToPath = exports.useLink = exports.useLinkPressHandler = void 0;
+-const useLinkPreviewContext_1 = require("./useLinkPreviewContext");
++// 🩹 Patched: Safe bypass for LinkPreviewContext (prevents crash)
++function useLinkPreviewContextSafe() {
++  return {
++    isEnabled: false,
++    disable: () => {},
++  };
++}
++
+ const { useLinkCore } = require("./useLinkCore");
+ const { useLinkPressHandlerCore } = require("./useLinkPressHandlerCore");
+ const { useLinkToPathCore } = require("./useLinkToPathCore");
+@@ -20,7 +25,7 @@ function useLinkPressHandler(props) {
+     return useLinkPressHandlerCore(props);
+ }
+ exports.useLinkPressHandler = useLinkPressHandler;
+-function useLink(props) {
+-    const context = (0, useLinkPreviewContext_1.useLinkPreviewContext)();
++function useLink(props) {
++    const context = useLinkPreviewContextSafe();
+     return useLinkCore(props, context);
+ }
+ exports.useLink = useLink;
