@@ -23,7 +23,9 @@
       "versionCode": 2
     },
     "updates": {
-      "url": "https://u.expo.dev/c2e03494-6ddc-411d-bc9e-1525bda32c1d"
+      "enabled": false,
+      "checkAutomatically": "ON_ERROR_RECOVERY",
+      "fallbackToCacheTimeout": 0
     },
     "runtimeVersion": {
       "policy": "sdkVersion"
