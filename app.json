@@ -2,7 +2,7 @@
   "expo": {
     "name": "Stockberry App",
     "slug": "stockberry",
-    "version": "1.0.0",
+    "version": "1.0.0-patched",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -19,7 +19,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "versionCode": 2
     },
     "updates": {
       "url": "https://u.expo.dev/c2e03494-6ddc-411d-bc9e-1525bda32c1d"
